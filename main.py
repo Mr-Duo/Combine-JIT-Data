@@ -57,13 +57,19 @@ def main():
                     save_name = get_save_name(index, language)
                     language_commit = combine_commit(dir, files)
 
-                    with open(f"{output_path}/{save_name}", 'wb') as file:
+                    save_path = f"{output_path}/{save_name}"
+                    if not os.path.exists(save_path):
+                        os.makedirs(os.path.dirname(save_path))
+                    with open(save_path, 'wb') as file:
                         pickle.dump(language_commit, file)
                 else:
                     save_name = get_save_name(index, language)
                     language_feature = combine_feature(dir, files)
 
-                    language_feature.to_csv(f"{output_path}/{save_name}", index=False)
+                    save_path = f"{output_path}/{save_name}"
+                    if not os.path.exists(save_path):
+                        os.makedirs(os.path.dirname(save_path))
+                    language_feature.to_csv(save_path, index=False)
                 
         shutil.rmtree(tmp_out_dir)
         
