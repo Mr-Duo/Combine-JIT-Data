@@ -18,8 +18,13 @@ def main():
     for language, projects in LANGAUGE_PROJECTS.items():
         logger(f"{language}: {len(projects)} projects")
 
+        tmp_out_dir = tempfile.mkdtemp(prefix='language.', dir=output_path)
+
         for project in projects:
-            tmp_out_dir = tempfile.mkdtemp(prefix='language.', dir=output_path)
+            sub_dirs = []
+            for i in range(10):
+                tmp_sub_dir = tempfile.mkdtemp(prefix=f'sub_{i}.', dir=tmp_out_dir)
+                sub_dirs.append(tmp_sub_dir)
 
             path = f"{data_path}/{project}"
             commits_path, features_path = os.listdir(path)
@@ -28,19 +33,19 @@ def main():
             commit_files = os.listdir(commits_path)
             feature_files = os.listdir(features_path)
 
-            for file in commit_files:
-                if 'part_1' in file or 'part_5' in file:
-                    file_path = f"{commits_path}/{file}"
-                    shutil.copy(file_path, tmp_out_dir)
-
-            for file in feature_files:
+            for index, file in enumerate(feature_files):
                 if 'part_1' in file or 'part_5' in file:
                     file_path = f"{features_path}/{file}"
-                    shutil.copy(file_path, tmp_out_dir)
+                    shutil.copy(file_path, sub_dirs[index])
 
-            logger(os.listdir(tmp_out_dir))
+            for index, file in enumerate(commit_files):
+                if 'part_1' in file or 'part_5' in file:
+                    file_path = f"{commits_path}/{file}"
+                    shutil.copy(file_path, sub_dirs[index + 4])
                 
-            shutil.rmtree(tmp_out_dir)
+        # shutil.rmtree(tmp_out_dir)
+        
+        break
 
 if __name__ == "__main__":
     main()
