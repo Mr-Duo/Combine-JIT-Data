@@ -18,9 +18,9 @@ def main():
     for language, projects in LANGAUGE_PROJECTS.items():
         logger(f"{language}: {len(projects)} projects")
 
-        tmp_out_dir = tempfile.mkdtemp(prefix='repo.', dir=output_path)
-
         for project in projects:
+            tmp_out_dir = tempfile.mkdtemp(prefix='language.', dir=output_path)
+
             path = f"{data_path}/{project}"
             commits_path, features_path = os.listdir(path)
             commits_path, features_path = f"{path}/{commits_path}", f"{path}/{features_path}"
@@ -29,18 +29,18 @@ def main():
             feature_files = os.listdir(features_path)
 
             for file in commit_files:
-                file_path = f"{commits_path}/{file}"
-                shutil.copy(file_path, tmp_out_dir)
+                if 'part_1' in file or 'part_5' in file:
+                    file_path = f"{commits_path}/{file}"
+                    shutil.copy(file_path, tmp_out_dir)
 
             for file in feature_files:
-                file_path = f"{features_path}/{file}"
-                shutil.copy(file_path, tmp_out_dir)
+                if 'part_1' in file or 'part_5' in file:
+                    file_path = f"{features_path}/{file}"
+                    shutil.copy(file_path, tmp_out_dir)
 
             logger(os.listdir(tmp_out_dir))
                 
-            
-
-        # shutil.rmtree(tmp_out_dir)
+            shutil.rmtree(tmp_out_dir)
 
 if __name__ == "__main__":
     main()
