@@ -19,12 +19,12 @@ def main():
         logger(f"{language}: {len(projects)} projects")
 
         tmp_out_dir = tempfile.mkdtemp(prefix='language.', dir=output_path)
+        sub_dirs = []
+        for i in range(20):
+            tmp_sub_dir = tempfile.mkdtemp(prefix=f'sub_{i}.', dir=tmp_out_dir)
+            sub_dirs.append(tmp_sub_dir)
 
         for project in projects:
-            sub_dirs = []
-            for i in range(20):
-                tmp_sub_dir = tempfile.mkdtemp(prefix=f'sub_{i}.', dir=tmp_out_dir)
-                sub_dirs.append(tmp_sub_dir)
 
             path = f"{data_path}/{project}"
             commits_path, features_path = os.listdir(path)
