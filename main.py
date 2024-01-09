@@ -33,6 +33,7 @@ def main():
             commit_files = os.listdir(commits_path)
             feature_files = os.listdir(features_path)
 
+            # Filter out file
             files_to_get = get_list_files(project)
 
             index = 0
@@ -47,6 +48,11 @@ def main():
                     file_path = f"{commits_path}/{file}"
                     shutil.copy(file_path, sub_dirs[files_to_get.index(file)])
                     index += 1
+
+            # Combine
+            for dir in sub_dirs:
+                files = os.listdir(dir)
+                logger(files)
                 
         # shutil.rmtree(tmp_out_dir)
         
