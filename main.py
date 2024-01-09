@@ -20,7 +20,7 @@ def main():
 
         tmp_out_dir = tempfile.mkdtemp(prefix='language.', dir=output_path)
         sub_dirs = []
-        for i in range(20):
+        for i in range(14):
             tmp_sub_dir = tempfile.mkdtemp(prefix=f'sub_{i}.', dir=tmp_out_dir)
             sub_dirs.append(tmp_sub_dir)
 
@@ -33,17 +33,19 @@ def main():
             commit_files = os.listdir(commits_path)
             feature_files = os.listdir(features_path)
 
+            files_to_get = get_list_files(project)
+
             index = 0
             for file in feature_files:
-                if 'part_1' in file or 'part_5' in file:
+                if file in files_to_get:
                     file_path = f"{features_path}/{file}"
-                    shutil.copy(file_path, sub_dirs[index])
+                    shutil.copy(file_path, sub_dirs.index(file))
                     index += 1
 
             for file in commit_files:
-                if 'part_1' in file or 'part_5' in file:
+                if file in files_to_get:
                     file_path = f"{commits_path}/{file}"
-                    shutil.copy(file_path, sub_dirs[index])
+                    shutil.copy(file_path, sub_dirs.index(file))
                     index += 1
                 
         # shutil.rmtree(tmp_out_dir)
