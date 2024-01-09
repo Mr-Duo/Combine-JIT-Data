@@ -40,7 +40,7 @@ def main():
                     shutil.copy(file_path, sub_dirs[index])
                     index += 1
 
-            for index, file in enumerate(commit_files):
+            for file in commit_files:
                 if 'part_1' in file or 'part_5' in file:
                     file_path = f"{commits_path}/{file}"
                     shutil.copy(file_path, sub_dirs[index])
