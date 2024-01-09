@@ -22,7 +22,6 @@ LANGAUGE_PROJECTS = {
 
 def get_list_files(project_name):
     output = [
-        f'{project_name}_part_1_part_4_train_dict.pkl',
         f'cc2vec_{project_name}_part_1_part_4_train.pkl',
         f'cc2vec_{project_name}_part_1_part_4_val.pkl',
         f'deepjit_{project_name}_part_1_part_4_train.pkl',
@@ -42,7 +41,6 @@ def get_list_files(project_name):
 
 def get_save_name(index, language):
     output = [
-        f'{language}/commits/{language}_part_1_part_4_train_dict.pkl',
         f'{language}/commits/cc2vec_{language}_part_1_part_4_train.pkl',
         f'{language}/commits/cc2vec_{language}_part_1_part_4_val.pkl',
         f'{language}/commits/deepjit_{language}_part_1_part_4_train.pkl',
@@ -59,17 +57,6 @@ def get_save_name(index, language):
     ]
 
     return output[index]
-
-def combine_dict(dir, files):
-    dict_msg, dict_code = {}, {}
-    
-    for file in files:
-        logger(f"{dir}/{file}")
-        loaded_data = pickle.load(open(f"{dir}/{file}", 'rb'))
-        _dict_msg, _dict_code = loaded_data
-        logger(type(_dict_msg), type(_dict_code))
-
-    # return dict
 
 def combine_commit(dir, files):
     ids, msgs, codes, labels = [], [], [], []

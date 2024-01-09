@@ -20,7 +20,7 @@ def main():
 
         tmp_out_dir = tempfile.mkdtemp(prefix='language.', dir=output_path)
         sub_dirs = []
-        for i in range(14):
+        for i in range(13):
             tmp_sub_dir = tempfile.mkdtemp(prefix=f'sub_{i}.', dir=tmp_out_dir)
             sub_dirs.append(tmp_sub_dir)
 
@@ -53,14 +53,17 @@ def main():
             for index, dir in enumerate(sub_dirs):
                 files = os.listdir(dir)
                 
-                if index == 0:
-                    language_dict = combine_dict(dir, files)
-                elif index in range(1, 10):
+                if index in range(9):
                     save_name = get_save_name(index, language)
                     language_commit = combine_commit(dir, files)
+
+                    with open(f"{output_path}/{save_name}", 'wb') as file:
+                        pickle.dump(language_commit, file)
                 else:
                     save_name = get_save_name(index, language)
                     language_feature = combine_feature(dir, files)
+
+                    language_feature.to_csv(f"{output_path}/{save_name}", index=False)
                 
         # shutil.rmtree(tmp_out_dir)
         
