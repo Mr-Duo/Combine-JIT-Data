@@ -24,7 +24,18 @@ def main():
             path = f"{data_path}/{project}"
             commits_path, features_path = os.listdir(path)
             commits_path, features_path = f"{path}/{commits_path}", f"{path}/{features_path}"
-            logger(commits_path, features_path)
+            
+            commit_files = os.listdir(commits_path)
+            feature_files = os.listdir(features_path)
+
+            for file in commit_files:
+                file_path = f"{commits_path}/{file}"
+                logger(file_path)
+
+            for file in feature_files:
+                file_path = f"{features_path}/{file}"
+                logger(file_path)
+            
 
         # shutil.rmtree(tmp_out_dir)
 
