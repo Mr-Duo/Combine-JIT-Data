@@ -65,7 +65,7 @@ def main():
 
                     language_feature.to_csv(f"{output_path}/{save_name}", index=False)
                 
-        # shutil.rmtree(tmp_out_dir)
+        shutil.rmtree(tmp_out_dir)
         
         break
 
