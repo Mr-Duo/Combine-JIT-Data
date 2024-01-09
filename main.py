@@ -1,5 +1,6 @@
 import argparse, tempfile, shutil
 from utils import *
+from dict import create_dict
 
 def read_args():
     parser = argparse.ArgumentParser(description='Process JSON data.')
@@ -54,18 +55,28 @@ def main():
                 files = os.listdir(dir)
                 
                 if index in range(9):
-                    save_name = get_save_name(index, language)
                     language_commit = combine_commit(dir, files)
 
+                    if index == 2:
+                        save_name = f'{language}/commits/{language}_part_1_part_4_train_dict.pkl'
+                        dict = create_dict(language_commit[1], language_commit[2])
+
+                        save_path = f"{output_path}/{save_name}"
+                        if not os.path.exists(os.path.dirname(save_path)):
+                            os.makedirs(os.path.dirname(save_path))
+                        with open(save_path, 'wb') as file:
+                            pickle.dump(dict, file)
+
+                    save_name = get_save_name(index, language)
                     save_path = f"{output_path}/{save_name}"
                     if not os.path.exists(os.path.dirname(save_path)):
                         os.makedirs(os.path.dirname(save_path))
                     with open(save_path, 'wb') as file:
                         pickle.dump(language_commit, file)
                 else:
-                    save_name = get_save_name(index, language)
                     language_feature = combine_feature(dir, files)
 
+                    save_name = get_save_name(index, language)
                     save_path = f"{output_path}/{save_name}"
                     if not os.path.exists(os.path.dirname(save_path)):
                         os.makedirs(os.path.dirname(save_path))
