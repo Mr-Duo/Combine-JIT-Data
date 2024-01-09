@@ -22,7 +22,7 @@ def main():
 
         for project in projects:
             sub_dirs = []
-            for i in range(10):
+            for i in range(15):
                 tmp_sub_dir = tempfile.mkdtemp(prefix=f'sub_{i}.', dir=tmp_out_dir)
                 sub_dirs.append(tmp_sub_dir)
 
