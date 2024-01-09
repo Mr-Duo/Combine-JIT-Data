@@ -30,11 +30,14 @@ def main():
 
             for file in commit_files:
                 file_path = f"{commits_path}/{file}"
-                logger(file_path)
+                shutil.copy(file_path, tmp_out_dir)
 
             for file in feature_files:
                 file_path = f"{features_path}/{file}"
-                logger(file_path)
+                shutil.copy(file_path, tmp_out_dir)
+
+            logger(os.listdir(tmp_out_dir))
+                
             
 
         # shutil.rmtree(tmp_out_dir)
