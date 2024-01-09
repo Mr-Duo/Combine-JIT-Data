@@ -36,12 +36,12 @@ def main():
             for index, file in enumerate(feature_files):
                 if 'part_1' in file or 'part_5' in file:
                     file_path = f"{features_path}/{file}"
-                    shutil.copy(file_path, sub_dirs[index])
+                    shutil.copy(file_path, sub_dirs[index - 1])
 
             for index, file in enumerate(commit_files):
                 if 'part_1' in file or 'part_5' in file:
                     file_path = f"{commits_path}/{file}"
-                    shutil.copy(file_path, sub_dirs[index + 4])
+                    shutil.copy(file_path, sub_dirs[index + 3])
                 
         # shutil.rmtree(tmp_out_dir)
         
