@@ -52,8 +52,15 @@ def main():
             # Combine
             for index, dir in enumerate(sub_dirs):
                 files = os.listdir(dir)
-                logger(index)
-                logger(files)
+                
+                if index == 0:
+                    language_dict = combine_dict(dir, files)
+                elif index in range(1, 10):
+                    save_name = get_save_name(index, language)
+                    language_commit = combine_commit(dir, files)
+                else:
+                    save_name = get_save_name(index, language)
+                    language_feature = combine_feature(dir, files)
                 
         # shutil.rmtree(tmp_out_dir)
         

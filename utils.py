@@ -1,4 +1,5 @@
-import os
+import os, pickle
+import pandas as pd
 from datetime import datetime
 from icecream import ic as logger
 
@@ -19,26 +20,6 @@ LANGAUGE_PROJECTS = {
     'python': ['cpython', 'salt', 'pandas', 'transformers', 'scipy', 'scikit-learn', 'numpy', 'jumpserver', 'scrapy', 'yolov5'],
 }
 
-FILE_INDEX = {
-    '_part_1_part_4_train_dict.pkl',
-    'cc2vec_{}_part_1_part_4_train.pkl'
-}
-
-'bootstrap_part_1_part_4_train_dict.pkl',
-'cc2vec_bootstrap_part_1_part_4_train.pkl',
-'cc2vec_bootstrap_part_1_part_4_val.pkl',
-'deepjit_bootstrap_part_1_part_4_train.pkl',
-'deepjit_bootstrap_part_1_part_4_val.pkl',
-'simcom_bootstrap_part_1_part_4_train.pkl',
-'simcom_bootstrap_part_1_part_4_val.pkl',
-'cc2vec_bootstrap_part_5.pkl',
-'deepjit_bootstrap_part_5.pkl',
-'simcom_bootstrap_part_5.pkl',
-'bootstrap_part_5.csv',
-'bootstrap_part_1_part_4.csv',
-'bootstrap_part_1_part_4_train.csv',
-'bootstrap_part_1_part_4_val.csv',
-
 def get_list_files(project_name):
     output = [
         f'{project_name}_part_1_part_4_train_dict.pkl',
@@ -58,3 +39,62 @@ def get_list_files(project_name):
     ]
 
     return output
+
+def get_save_name(index, language):
+    output = [
+        f'{language}/commits/{language}_part_1_part_4_train_dict.pkl',
+        f'{language}/commits/cc2vec_{language}_part_1_part_4_train.pkl',
+        f'{language}/commits/cc2vec_{language}_part_1_part_4_val.pkl',
+        f'{language}/commits/deepjit_{language}_part_1_part_4_train.pkl',
+        f'{language}/commits/deepjit_{language}_part_1_part_4_val.pkl',
+        f'{language}/commits/simcom_{language}_part_1_part_4_train.pkl',
+        f'{language}/commits/simcom_{language}_part_1_part_4_val.pkl',
+        f'{language}/commits/cc2vec_{language}_part_5.pkl',
+        f'{language}/commits/deepjit_{language}_part_5.pkl',
+        f'{language}/commits/simcom_{language}_part_5.pkl',
+        f'{language}/features/{language}_part_5.csv',
+        f'{language}/features/{language}_part_1_part_4.csv',
+        f'{language}/features/{language}_part_1_part_4_train.csv',
+        f'{language}/features/{language}_part_1_part_4_val.csv'
+    ]
+
+    return output[index]
+
+def combine_dict(dir, files):
+    dict_msg, dict_code = {}, {}
+    
+    for file in files:
+        logger(f"{dir}/{file}")
+        loaded_data = pickle.load(open(f"{dir}/{file}", 'rb'))
+        _dict_msg, _dict_code = loaded_data
+        logger(type(_dict_msg), type(_dict_code))
+
+    # return dict
+
+def combine_commit(dir, files):
+    ids, msgs, codes, labels = [], [], [], []
+
+    for file in files:
+        logger(f"{dir}/{file}")
+        loaded_data = pickle.load(open(f"{dir}/{file}", 'rb'))
+        _ids, _msgs, _codes, _labels = loaded_data
+        logger(len(_ids), len(_msgs), len(_codes), len(_labels))
+        ids += _ids
+        msgs += _msgs
+        codes += _codes
+        labels += _labels
+
+    logger(len(ids), len(msgs), len(codes), len(labels))
+    return [ids, msgs, codes, labels]
+
+def combine_feature(dir, files):
+    data_frame = pd.DataFrame()
+
+    for file in files:
+        logger(f"{dir}/{file}")
+        df = pd.read_csv(f"{dir}/{file}")
+        logger(df.shape)
+        data_frame = pd.concat([data_frame, df])
+
+    logger(data_frame.shape)
+    return data_frame
