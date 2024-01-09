@@ -23,7 +23,7 @@ def main():
         for project in projects:
             path = f"{data_path}/{project}"
             commits_path, features_path = os.listdir(path)
-            logger(commits_path, features_path)
+            commits_path, features_path = f"{path}/{commits_path}", f"{path}/{features_path}"
 
         # shutil.rmtree(tmp_out_dir)
 
