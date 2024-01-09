@@ -83,8 +83,6 @@ def main():
                     language_feature.to_csv(save_path, index=False)
                 
         shutil.rmtree(tmp_out_dir)
-        
-        break
 
 if __name__ == "__main__":
     main()
