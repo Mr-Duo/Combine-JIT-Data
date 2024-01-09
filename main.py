@@ -50,8 +50,9 @@ def main():
                     index += 1
 
             # Combine
-            for dir in sub_dirs:
+            for index, dir in enumerate(sub_dirs):
                 files = os.listdir(dir)
+                logger(index)
                 logger(files)
                 
         # shutil.rmtree(tmp_out_dir)
