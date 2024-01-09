@@ -58,7 +58,7 @@ def main():
                     language_commit = combine_commit(dir, files)
 
                     save_path = f"{output_path}/{save_name}"
-                    if not os.path.exists(save_path):
+                    if not os.path.exists(os.path.dirname(save_path)):
                         os.makedirs(os.path.dirname(save_path))
                     with open(save_path, 'wb') as file:
                         pickle.dump(language_commit, file)
@@ -67,7 +67,7 @@ def main():
                     language_feature = combine_feature(dir, files)
 
                     save_path = f"{output_path}/{save_name}"
-                    if not os.path.exists(save_path):
+                    if not os.path.exists(os.path.dirname(save_path)):
                         os.makedirs(os.path.dirname(save_path))
                     language_feature.to_csv(save_path, index=False)
                 
