@@ -27,13 +27,13 @@ def padding_length(line, max_length):
     else:
         return line
 
-def padding_data(data, dictionary, params, type):
+def padding_data(data, dictionary, type):
     if type == 'msg':
-        pad_msg = padding_message(data=data, max_length=params.msg_length)
+        pad_msg = padding_message(data=data, max_length=256)
         pad_msg = mapping_dict_msg(pad_msg=pad_msg, dict_msg=dictionary)
         return pad_msg
     elif type == 'code':
-        pad_code = padding_commit_code(data=data, max_line=params.code_line, max_length=params.code_length)
+        pad_code = padding_commit_code(data=data, max_line=10, max_length=512)
         pad_code = mapping_dict_code(pad_code=pad_code, dict_code=dictionary)
         return pad_code
     else:

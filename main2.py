@@ -42,7 +42,9 @@ def main():
 
         for file in os.listdir(commits_path):
             if 'part_5' in file:
-                logger(file)
+                preprocess_file(file)
+
+        break
 
     for language in os.listdir(cross_path):
         language_path = f"{cross_path}/{language}"
@@ -53,7 +55,9 @@ def main():
 
         for file in os.listdir(commits_path):
             if 'dict' not in file:
-                logger(file)
+                preprocess_file(commits_path, file, lang_dict[language], f"{output_path}/{language}")
+
+        break
 
 if __name__ == "__main__":
     main()
