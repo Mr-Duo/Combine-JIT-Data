@@ -24,7 +24,7 @@ def main():
             language_path = f"{path}/{language}"
 
             folders = os.listdir(language_path)
-            commits_path, features_path = folders
+            commits_path, features_path = folders[0], folders[1]
             commits_path, features_path = f"{language_path}/{commits_path}", f"{language_path}/{features_path}"
 
             for file in os.listdir(commits_path):
