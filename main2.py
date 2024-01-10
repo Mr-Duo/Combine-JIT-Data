@@ -42,7 +42,7 @@ def main():
 
         for file in os.listdir(commits_path):
             if 'part_5' in file:
-                preprocess_file(file)
+                preprocess_file(commits_path, file, lang_dict[language], f"{output_path}/{language}")
 
         break
 
