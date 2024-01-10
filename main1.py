@@ -11,12 +11,12 @@ def read_args():
 def main():
     args = read_args()
     data_path = args.data_path
-    output_path = f"{args.output_path}/single-lang"
+    output_path = f"{args.output_path}/cross-lang"
 
     if not os.path.exists(output_path):
         os.mkdir(output_path)
 
-    for language, projects in LANGAUGE_PROJECTS.items():
+    for language, projects in CROSS_LANGAUGE_PROJECTS.items():
 
         tmp_out_dir = tempfile.mkdtemp(prefix='language.', dir=output_path)
         sub_dirs = []
@@ -53,7 +53,7 @@ def main():
             for index, dir in enumerate(sub_dirs):
                 files = os.listdir(dir)
                 
-                if index in range(9):
+                if index in range(6):
                     language_commit = combine_commit(dir, files)
 
                     if index == 2:
@@ -72,6 +72,14 @@ def main():
                         os.makedirs(os.path.dirname(save_path))
                     with open(save_path, 'wb') as file:
                         pickle.dump(language_commit, file)
+                elif index in range(6, 10):
+                    save_name = get_save_name(index, language)
+                    save_path = os.path.dirname(f"{output_path}/{save_name}")
+                    if not os.path.exists(save_path):
+                        os.makedirs(save_path)
+                    for file in files:
+                        file_path = f"{dir}/{file}"
+                        shutil.copy(file_path, save_path)
                 else:
                     language_feature = combine_feature(dir, files)
 
@@ -82,6 +90,8 @@ def main():
                     language_feature.to_csv(save_path, index=False)
                 
         shutil.rmtree(tmp_out_dir)
+
+        break
 
 if __name__ == "__main__":
     main()

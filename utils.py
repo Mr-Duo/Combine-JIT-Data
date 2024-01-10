@@ -20,6 +20,14 @@ LANGAUGE_PROJECTS = {
     'python': ['cpython', 'salt', 'pandas', 'transformers', 'scipy', 'scikit-learn', 'numpy', 'jumpserver', 'scrapy', 'yolov5'],
 }
 
+CROSS_LANGAUGE_PROJECTS = {
+    'javascript': ['java', 'c', 'cpp', 'python'],
+    'java': ['javascript', 'c', 'cpp', 'python'],
+    'c': ['javascript', 'java', 'cpp', 'python'],
+    'cpp': ['javascript', 'java', 'c', 'python'],
+    'python': ['javascript', 'java', 'c', 'cpp'],
+}
+
 def get_list_files(project_name):
     output = [
         f'cc2vec_{project_name}_part_1_part_4_train.pkl',
