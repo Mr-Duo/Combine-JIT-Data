@@ -36,10 +36,6 @@ def get_list_files(project_name):
         f'deepjit_{project_name}_part_1_part_4_val.pkl',
         f'simcom_{project_name}_part_1_part_4_train.pkl',
         f'simcom_{project_name}_part_1_part_4_val.pkl',
-        f'cc2vec_{project_name}_part_5.pkl',
-        f'deepjit_{project_name}_part_5.pkl',
-        f'simcom_{project_name}_part_5.pkl',
-        f'{project_name}_part_5.csv',
         f'{project_name}_part_1_part_4.csv',
         f'{project_name}_part_1_part_4_train.csv',
         f'{project_name}_part_1_part_4_val.csv'
@@ -55,10 +51,6 @@ def get_save_name(index, language):
         f'{language}/commits/deepjit_{language}_part_1_part_4_val.pkl',
         f'{language}/commits/simcom_{language}_part_1_part_4_train.pkl',
         f'{language}/commits/simcom_{language}_part_1_part_4_val.pkl',
-        f'{language}/commits/cc2vec_{language}_part_5.pkl',
-        f'{language}/commits/deepjit_{language}_part_5.pkl',
-        f'{language}/commits/simcom_{language}_part_5.pkl',
-        f'{language}/features/{language}_part_5.csv',
         f'{language}/features/{language}_part_1_part_4.csv',
         f'{language}/features/{language}_part_1_part_4_train.csv',
         f'{language}/features/{language}_part_1_part_4_val.csv'

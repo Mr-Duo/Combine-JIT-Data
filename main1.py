@@ -72,15 +72,6 @@ def main():
                         os.makedirs(os.path.dirname(save_path))
                     with open(save_path, 'wb') as file:
                         pickle.dump(language_commit, file)
-                elif index in range(6, 10):
-                    save_name = get_save_name(index, language)
-                    save_path = os.path.dirname(f"{output_path}/{save_name}")
-                    if not os.path.exists(save_path):
-                        os.makedirs(save_path)
-                    for file in files:
-                        if language in file:
-                            file_path = f"{dir}/{file}"
-                            shutil.copy(file_path, save_path)
                 else:
                     language_feature = combine_feature(dir, files)
 
@@ -91,8 +82,6 @@ def main():
                     language_feature.to_csv(save_path, index=False)
                 
         shutil.rmtree(tmp_out_dir)
-
-        break
 
 if __name__ == "__main__":
     main()
