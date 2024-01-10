@@ -23,7 +23,9 @@ def main():
         for language in os.listdir(path):
             language_path = f"{path}/{language}"
 
-            commits_path, features_path = os.listdir(language_path)
+            folders = os.listdir(language_path)
+            logger(folders)
+            exit()
             commits_path, features_path = f"{language_path}/{commits_path}", f"{language_path}/{features_path}"
 
             for file in os.listdir(commits_path):
