@@ -20,7 +20,7 @@ def main():
 
         tmp_out_dir = tempfile.mkdtemp(prefix='language.', dir=output_path)
         sub_dirs = []
-        for i in range(8):
+        for i in range(9):
             tmp_sub_dir = tempfile.mkdtemp(prefix=f'sub_{i}.', dir=tmp_out_dir)
             sub_dirs.append(tmp_sub_dir)
 
