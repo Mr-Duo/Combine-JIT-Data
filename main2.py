@@ -19,13 +19,11 @@ def main():
     for language in os.listdir(data_path):
         language_path = f"{data_path}/{language}"
 
-        for file in os.listdir(language_path):
-            file_path = f"{language_path}/{file}"
+        commits_path, features_path = os.listdir(language_path)
+        commits_path, features_path = f"{language_path}/{commits_path}", f"{language_path}/{features_path}"
 
-            commits_path, features_path = os.listdir(file_path)
-            commits_path, features_path = f"{file_path}/{commits_path}", f"{file_path}/{features_path}"
-
-            logger(commits_path, features_path)
+        for file in os.listdir(commits_path):
+            logger(file)
 
 if __name__ == "__main__":
     main()
