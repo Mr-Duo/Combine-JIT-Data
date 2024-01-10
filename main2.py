@@ -1,6 +1,5 @@
-import argparse, tempfile, shutil
+import argparse
 from utils import *
-from dict import create_dict
 
 def read_args():
     parser = argparse.ArgumentParser(description='Process JSON data.')
@@ -17,6 +16,17 @@ def main():
 
     if not os.path.exists(output_path):
         os.mkdir(output_path)
+
+    for language in os.listdir(cross_path):
+        language_path = f"{cross_path}/{language}"
+
+        folders = os.listdir(language_path)
+        commits_path, features_path = folders[0], folders[1]
+        commits_path, features_path = f"{language_path}/{commits_path}", f"{language_path}/{features_path}"
+
+        for file in os.listdir(commits_path):
+            if 'dict' in file:
+                logger(file)
 
     for language in os.listdir(single_path):
         language_path = f"{single_path}/{language}"
@@ -37,7 +47,8 @@ def main():
         commits_path, features_path = f"{language_path}/{commits_path}", f"{language_path}/{features_path}"
 
         for file in os.listdir(commits_path):
-            logger(file)
+            if 'dict' not in file:
+                logger(file)
 
 if __name__ == "__main__":
     main()

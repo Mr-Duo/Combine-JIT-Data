@@ -2,6 +2,7 @@ import os, pickle
 import pandas as pd
 from datetime import datetime
 from icecream import ic as logger
+from padding import padding_data
 
 if not os.path.exists(f'{os.getcwd()}/logs'):
     os.makedirs(f'{os.getcwd()}/logs')
@@ -128,3 +129,18 @@ def combine_feature(dir, files):
 
     logger(data_frame.shape)
     return data_frame
+
+def deepjit_preprocess_file(file_path):
+    loaded_data = pickle.load(open(file_path, 'rb'))
+    ids, messages, codes, labels = loaded_data
+    pad_msg = padding_data(data=messages, dictionary=dict_msg, params=params, type='msg')
+    pad_code = padding_data(data=codes, dictionary=dict_code, params=params, type='code')
+
+def cc2vec_preprocess_file(file_path):
+    pass
+
+def preprocess_file(file_path):
+    if 'deepjit' in file_path or 'simcom' in file_path:
+        deepjit_preprocess_file(file_path)
+    if 'cc2vec' in file_path:
+        cc2vec_preprocess_file(file_path)
