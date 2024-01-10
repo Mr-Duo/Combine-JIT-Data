@@ -65,23 +65,28 @@ def combine_commit(dir, files):
         logger(f"{dir}/{file}")
         loaded_data = pickle.load(open(f"{dir}/{file}", 'rb'))
         _ids, _msgs, _codes, _labels = loaded_data
-        logger(len(_ids), len(_msgs), len(_codes), len(_labels))
+        logger(len(_ids))
         ids += _ids
         msgs += _msgs
         codes += _codes
         labels += _labels
 
-    logger(len(ids), len(msgs), len(codes), len(labels))
+    logger(len(ids))
     return [ids, msgs, codes, labels]
 
 def combine_feature(dir, files):
-    data_frame = pd.DataFrame()
+    data_frame = None
 
     for file in files:
         logger(f"{dir}/{file}")
-        df = pd.read_csv(f"{dir}/{file}")
-        logger(df.shape)
-        data_frame = pd.concat([data_frame, df])
+    
+        if data_frame is None:
+            data_frame = pd.read_csv(f"{dir}/{file}")
+            logger(data_frame.shape)
+        else:
+            df = pd.read_csv(f"{dir}/{file}")
+            logger(df.shape)
+            data_frame = pd.concat([data_frame, df])
 
     logger(data_frame.shape)
     return data_frame

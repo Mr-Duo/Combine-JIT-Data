@@ -17,7 +17,6 @@ def main():
         os.mkdir(output_path)
 
     for language, projects in LANGAUGE_PROJECTS.items():
-        logger(f"{language}: {len(projects)} projects")
 
         tmp_out_dir = tempfile.mkdtemp(prefix='language.', dir=output_path)
         sub_dirs = []
