@@ -13,6 +13,7 @@ def main():
     single_path = args.single_path
     cross_path = args.cross_path
     output_path = f"{args.output_path}/cross-lang-preprocessed"
+    lang_dict = {}
 
     if not os.path.exists(output_path):
         os.mkdir(output_path)
@@ -25,8 +26,12 @@ def main():
         commits_path, features_path = f"{language_path}/{commits_path}", f"{language_path}/{features_path}"
 
         for file in os.listdir(commits_path):
+            file_path = f"{commits_path}/{file}"
+
             if 'dict' in file:
-                logger(file)
+                lang_dict[language] = file_path
+    
+    logger(lang_dict)
 
     for language in os.listdir(single_path):
         language_path = f"{single_path}/{language}"
