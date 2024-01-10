@@ -78,8 +78,9 @@ def main():
                     if not os.path.exists(save_path):
                         os.makedirs(save_path)
                     for file in files:
-                        file_path = f"{dir}/{file}"
-                        shutil.copy(file_path, save_path)
+                        if language in file:
+                            file_path = f"{dir}/{file}"
+                            shutil.copy(file_path, save_path)
                 else:
                     language_feature = combine_feature(dir, files)
 
