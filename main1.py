@@ -34,7 +34,7 @@ def main():
             feature_files = os.listdir(features_path)
 
             # Filter out file
-            files_to_get = get_list_files(project)
+            files_to_get = get_list_files_cross(project)
 
             index = 0
             for file in feature_files:
@@ -66,7 +66,7 @@ def main():
                         with open(save_path, 'wb') as file:
                             pickle.dump(dict, file)
 
-                    save_name = get_save_name(index, language)
+                    save_name = get_save_name_cross(index, language)
                     save_path = f"{output_path}/{save_name}"
                     if not os.path.exists(os.path.dirname(save_path)):
                         os.makedirs(os.path.dirname(save_path))
@@ -75,7 +75,7 @@ def main():
                 else:
                     language_feature = combine_feature(dir, files)
 
-                    save_name = get_save_name(index, language)
+                    save_name = get_save_name_cross(index, language)
                     save_path = f"{output_path}/{save_name}"
                     if not os.path.exists(os.path.dirname(save_path)):
                         os.makedirs(os.path.dirname(save_path))
