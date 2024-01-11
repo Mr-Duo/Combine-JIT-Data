@@ -34,7 +34,7 @@ def main():
             feature_files = os.listdir(features_path)
 
             # Filter out file
-            files_to_get = get_list_files_cross(project)
+            files_to_get = get_list_files(project)
 
             index = 0
             for file in feature_files:
@@ -57,7 +57,7 @@ def main():
                     language_commit = combine_commit(dir, files)
 
                     if index == 2:
-                        save_name = f'{language}/commits/{language}_part_1_part_4_train_dict.pkl'
+                        save_name = f'{language}/commits/{language}_part_4_train_dict.pkl'
                         dict = create_dict(language_commit[1], language_commit[2])
 
                         save_path = f"{output_path}/{save_name}"
