@@ -40,12 +40,14 @@ def main():
             for file in feature_files:
                 if file in files_to_get:
                     file_path = f"{features_path}/{file}"
+                    logger(file_path)
                     shutil.copy(file_path, sub_dirs[files_to_get.index(file)])
                     index += 1
 
             for file in commit_files:
                 if file in files_to_get:
                     file_path = f"{commits_path}/{file}"
+                    logger(file_path)
                     shutil.copy(file_path, sub_dirs[files_to_get.index(file)])
                     index += 1
 
