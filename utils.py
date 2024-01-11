@@ -41,7 +41,10 @@ def get_list_files_cross(project_name):
         f'simcom_{project_name}_part_1_part_4_val.pkl',
         f'{project_name}_part_4.csv',
         f'{project_name}_part_4_train.csv',
-        f'{project_name}_part_4_val.csv'
+        f'{project_name}_part_4_val.csv',
+        f'{project_name}_part_1_part_4.csv',
+        f'{project_name}_part_1_part_4_train.csv',
+        f'{project_name}_part_1_part_4_val.csv'
     ]
 
     return output
@@ -61,7 +64,10 @@ def get_list_files(project_name):
         f'{project_name}_part_5.csv',
         f'{project_name}_part_4.csv',
         f'{project_name}_part_4_train.csv',
-        f'{project_name}_part_4_val.csv'
+        f'{project_name}_part_4_val.csv',
+        f'{project_name}_part_1_part_4.csv',
+        f'{project_name}_part_1_part_4_train.csv',
+        f'{project_name}_part_1_part_4_val.csv'
     ]
 
     return output
