@@ -50,46 +50,51 @@ def main():
 
         for project in projects:
 
-            for index, dir in enumerate(sub_dirs):
-                files = os.listdir(dir)
-                
-                if index in range(10):
-                    language_commit = combine_commit(dir, files)
+            try:
 
-                    if index == 0:
-                        save_name = f'{language}/commits/{language}_part_4_train_dict.pkl'
-                        dict = create_dict(language_commit[1], language_commit[2])
+                for index, dir in enumerate(sub_dirs):
+                    files = os.listdir(dir)
+                    
+                    if index in range(10):
+                        language_commit = combine_commit(dir, files)
 
+                        if index == 0:
+                            save_name = f'{language}/commits/{language}_part_4_train_dict.pkl'
+                            dict = create_dict(language_commit[1], language_commit[2])
+
+                            save_path = f"{output_path}/{save_name}"
+                            if not os.path.exists(os.path.dirname(save_path)):
+                                os.makedirs(os.path.dirname(save_path))
+                            with open(save_path, 'wb') as file:
+                                pickle.dump(dict, file)
+
+                        if index == 4:
+                            save_name = f'{language}/commits/{language}_part_1_part_4_train_dict.pkl'
+                            dict = create_dict(language_commit[1], language_commit[2])
+
+                            save_path = f"{output_path}/{save_name}"
+                            if not os.path.exists(os.path.dirname(save_path)):
+                                os.makedirs(os.path.dirname(save_path))
+                            with open(save_path, 'wb') as file:
+                                pickle.dump(dict, file)
+
+                        save_name = get_save_name(index, language)
                         save_path = f"{output_path}/{save_name}"
                         if not os.path.exists(os.path.dirname(save_path)):
                             os.makedirs(os.path.dirname(save_path))
                         with open(save_path, 'wb') as file:
-                            pickle.dump(dict, file)
+                            pickle.dump(language_commit, file)
+                    else:
+                        language_feature = combine_feature(dir, files)
 
-                    if index == 4:
-                        save_name = f'{language}/commits/{language}_part_1_part_4_train_dict.pkl'
-                        dict = create_dict(language_commit[1], language_commit[2])
-
+                        save_name = get_save_name(index, language)
                         save_path = f"{output_path}/{save_name}"
                         if not os.path.exists(os.path.dirname(save_path)):
                             os.makedirs(os.path.dirname(save_path))
-                        with open(save_path, 'wb') as file:
-                            pickle.dump(dict, file)
-
-                    save_name = get_save_name(index, language)
-                    save_path = f"{output_path}/{save_name}"
-                    if not os.path.exists(os.path.dirname(save_path)):
-                        os.makedirs(os.path.dirname(save_path))
-                    with open(save_path, 'wb') as file:
-                        pickle.dump(language_commit, file)
-                else:
-                    language_feature = combine_feature(dir, files)
-
-                    save_name = get_save_name(index, language)
-                    save_path = f"{output_path}/{save_name}"
-                    if not os.path.exists(os.path.dirname(save_path)):
-                        os.makedirs(os.path.dirname(save_path))
-                    language_feature.to_csv(save_path, index=False)
+                        language_feature.to_csv(save_path, index=False)
+            
+            except Exception as e:
+                logger(index, dir, e)
                 
         shutil.rmtree(tmp_out_dir)
 
