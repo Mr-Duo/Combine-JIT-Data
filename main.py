@@ -52,10 +52,11 @@ def main():
                     index += 1
 
         for project in projects:
+
             for index, dir in enumerate(sub_dirs):
                 files = os.listdir(dir)
                 
-                if index in range(9):
+                if index in range(10):
                     language_commit = combine_commit(dir, files)
 
                     if index == 0:

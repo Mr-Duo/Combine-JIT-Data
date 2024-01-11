@@ -53,7 +53,7 @@ def main():
             for index, dir in enumerate(sub_dirs):
                 files = os.listdir(dir)
                 
-                if index in range(6):
+                if index in range(8):
                     language_commit = combine_commit(dir, files)
 
                     if index == 0:
