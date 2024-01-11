@@ -84,7 +84,7 @@ def get_save_name_cross(index, language):
         f'{language}/commits/simcom_{language}_part_1_part_4_val.pkl',
         f'{language}/features/{language}_part_4.csv',
         f'{language}/features/{language}_part_4_train.csv',
-        f'{language}/features/{language}_part_4_val.csv'
+        f'{language}/features/{language}_part_4_val.csv',
         f'{language}/features/{language}_part_1_part_4.csv',
         f'{language}/features/{language}_part_1_part_4_train.csv',
         f'{language}/features/{language}_part_1_part_4_val.csv'
@@ -107,7 +107,7 @@ def get_save_name(index, language):
         f'{language}/features/{language}_part_5.csv',
         f'{language}/features/{language}_part_4.csv',
         f'{language}/features/{language}_part_4_train.csv',
-        f'{language}/features/{language}_part_4_val.csv'
+        f'{language}/features/{language}_part_4_val.csv',
         f'{language}/features/{language}_part_1_part_4.csv',
         f'{language}/features/{language}_part_1_part_4_train.csv',
         f'{language}/features/{language}_part_1_part_4_val.csv'
