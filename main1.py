@@ -20,7 +20,7 @@ def main():
 
         tmp_out_dir = tempfile.mkdtemp(prefix='language.', dir=output_path)
         sub_dirs = []
-        for i in range(9):
+        for i in range(11):
             tmp_sub_dir = tempfile.mkdtemp(prefix=f'sub_{i}.', dir=tmp_out_dir)
             sub_dirs.append(tmp_sub_dir)
 
@@ -34,7 +34,7 @@ def main():
             feature_files = os.listdir(features_path)
 
             # Filter out file
-            files_to_get = get_list_files(project)
+            files_to_get = get_list_files_cross(project)
 
             index = 0
             for file in feature_files:

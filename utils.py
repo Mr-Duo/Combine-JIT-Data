@@ -30,6 +30,23 @@ CROSS_LANGAUGE_PROJECTS = {
     'python': ['javascript', 'java', 'c', 'cpp'],
 }
 
+def get_list_files_cross(project_name):
+    output = [
+        f'deepjit_{project_name}_part_4_train.pkl',
+        f'deepjit_{project_name}_part_4_val.pkl',
+        f'simcom_{project_name}_part_4_train.pkl',
+        f'simcom_{project_name}_part_4_val.pkl',
+        f'deepjit_{project_name}_part_1_part_4_train.pkl',
+        f'deepjit_{project_name}_part_1_part_4_val.pkl',
+        f'simcom_{project_name}_part_1_part_4_train.pkl',
+        f'simcom_{project_name}_part_1_part_4_val.pkl',
+        f'{project_name}_part_4.csv',
+        f'{project_name}_part_4_train.csv',
+        f'{project_name}_part_4_val.csv'
+    ]
+
+    return output
+
 def get_list_files(project_name):
     output = [
         f'deepjit_{project_name}_part_4_train.pkl',
@@ -126,7 +143,7 @@ def combine_feature(dir, files):
     logger(data_frame.shape)
     return data_frame
 
-def deepjit_preprocess_file(dir, file_name, dict_path, output_path):
+def preprocess_file(dir, file_name, dict_path, output_path):
     loaded_data = pickle.load(open(f"{dir}/{file_name}", 'rb'))
     ids, messages, codes, labels = loaded_data
 
@@ -143,41 +160,3 @@ def deepjit_preprocess_file(dir, file_name, dict_path, output_path):
         os.makedirs(os.path.dirname(save_path))
     with open(save_path, 'wb') as file:
         pickle.dump(output, file)
-
-def cc2vec_preprocess_file(dir, file_name, dict_path, output_path):
-    loaded_data = pickle.load(open(f"{dir}/{file_name}", 'rb'))
-    ids, msgs, codes, labels = loaded_data
-
-    dictionary = pickle.load(open(dict_path, 'rb'))   
-    dict_msg, dict_code = dictionary
-
-    # Combine train data and test data into data
-    ids = ids
-    labels = list(labels)
-    msgs = msgs
-    codes = codes
-
-    # Preprocessing code & msg
-    pad_msg = padding_message(data=msgs, max_length=256)
-    added_code, removed_code = clean_and_reformat_code(codes)
-    pad_added_code = padding_commit_code(data=added_code, max_file=2, max_line=10, max_length=64)
-    pad_removed_code = padding_commit_code(data=removed_code, max_file=2, max_line=10, max_length=64)
-
-    pad_msg = mapping_dict_msg(pad_msg=pad_msg, dict_msg=dict_msg)
-    pad_added_code = mapping_dict_code(pad_code=pad_added_code, dict_code=dict_code)
-    pad_removed_code = mapping_dict_code(pad_code=pad_removed_code, dict_code=dict_code)
-    pad_msg_labels = convert_msg_to_label(pad_msg=pad_msg, dict_msg=dict_msg)
-
-    output = [ids, pad_added_code, pad_removed_code, pad_msg_labels]
-
-    save_path = f"{output_path}/{file_name}"
-    if not os.path.exists(os.path.dirname(save_path)):
-        os.makedirs(os.path.dirname(save_path))
-    with open(save_path, 'wb') as file:
-        pickle.dump(output, file)
-
-def preprocess_file(dir, file_name, dict_path, output_path):
-    if 'deepjit' in file_name or 'simcom' in file_name:
-        deepjit_preprocess_file(dir, file_name, dict_path, output_path)
-    if 'cc2vec' in file_name:
-        cc2vec_preprocess_file(dir, file_name, dict_path, output_path)
