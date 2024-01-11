@@ -51,7 +51,7 @@ def main():
                     shutil.copy(file_path, sub_dirs[files_to_get.index(file)])
                     index += 1
 
-            # Combine
+        for project in projects:
             for index, dir in enumerate(sub_dirs):
                 files = os.listdir(dir)
                 
