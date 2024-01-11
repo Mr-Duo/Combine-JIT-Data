@@ -3,7 +3,6 @@ import pandas as pd
 from datetime import datetime
 from icecream import ic as logger
 from padding import padding_data
-from jit_padding import padding_message, clean_and_reformat_code, padding_commit_code, mapping_dict_msg, mapping_dict_code, convert_msg_to_label
 
 if not os.path.exists(f'{os.getcwd()}/logs'):
     os.makedirs(f'{os.getcwd()}/logs')
@@ -111,6 +110,7 @@ def get_save_name(index, language):
     return output[index]
 
 def combine_commit(dir, files):
+    logger(files)
     ids, msgs, codes, labels = [], [], [], []
 
     for file in files:
@@ -127,6 +127,7 @@ def combine_commit(dir, files):
     return [ids, msgs, codes, labels]
 
 def combine_feature(dir, files):
+    logger(files)
     data_frame = None
 
     for file in files:

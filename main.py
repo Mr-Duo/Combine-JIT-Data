@@ -56,7 +56,17 @@ def main():
                 if index in range(9):
                     language_commit = combine_commit(dir, files)
 
-                    if index == 2:
+                    if index == 0:
+                        save_name = f'{language}/commits/{language}_part_4_train_dict.pkl'
+                        dict = create_dict(language_commit[1], language_commit[2])
+
+                        save_path = f"{output_path}/{save_name}"
+                        if not os.path.exists(os.path.dirname(save_path)):
+                            os.makedirs(os.path.dirname(save_path))
+                        with open(save_path, 'wb') as file:
+                            pickle.dump(dict, file)
+
+                    if index == 4:
                         save_name = f'{language}/commits/{language}_part_1_part_4_train_dict.pkl'
                         dict = create_dict(language_commit[1], language_commit[2])
 
@@ -82,6 +92,8 @@ def main():
                     language_feature.to_csv(save_path, index=False)
                 
         shutil.rmtree(tmp_out_dir)
+
+        break
 
 if __name__ == "__main__":
     main()
