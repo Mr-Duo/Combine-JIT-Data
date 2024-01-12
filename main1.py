@@ -46,6 +46,8 @@ def main():
                     file_path = f"{commits_path}/{file}"
                     shutil.copy(file_path, sub_dirs[files_to_get.index(file)])
 
+        for project in projects:
+
             # Combine
             for index, dir in enumerate(sub_dirs):
                 files = os.listdir(dir)
