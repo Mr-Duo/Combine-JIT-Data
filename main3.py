@@ -92,5 +92,7 @@ def main():
                 
         shutil.rmtree(tmp_out_dir)
 
+        break
+
 if __name__ == "__main__":
     main()
