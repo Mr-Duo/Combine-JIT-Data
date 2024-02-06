@@ -11,7 +11,7 @@ def read_args():
 def main():
     args = read_args()
     data_path = args.data_path
-    output_path = f"{args.output_path}/single-lang"
+    output_path = f"{args.output_path}/single-project"
 
     if not os.path.exists(output_path):
         os.mkdir(output_path)
