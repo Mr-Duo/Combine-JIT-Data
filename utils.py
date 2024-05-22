@@ -101,43 +101,30 @@ def get_list_files_cross(project_name):
 
 def get_list_files(project_name):
     output = [
-        f'deepjit_{project_name}_part_4_train.pkl',
-        f'deepjit_{project_name}_part_4_val.pkl',
-        f'simcom_{project_name}_part_4_train.pkl',
-        f'simcom_{project_name}_part_4_val.pkl',
-        f'deepjit_{project_name}_part_1_part_4_train.pkl',
-        f'deepjit_{project_name}_part_1_part_4_val.pkl',
-        f'simcom_{project_name}_part_1_part_4_train.pkl',
-        f'simcom_{project_name}_part_1_part_4_val.pkl',
-        f'deepjit_{project_name}_part_5.pkl',
-        f'simcom_{project_name}_part_5.pkl',
-        f'{project_name}_part_5.csv',
-        f'{project_name}_part_4.csv',
-        f'{project_name}_part_4_train.csv',
-        f'{project_name}_part_4_val.csv',
-        f'{project_name}_part_1_part_4.csv',
-        f'{project_name}_part_1_part_4_train.csv',
-        f'{project_name}_part_1_part_4_val.csv'
+        f'change_codes_deepjit_{project_name}_train.pkl',
+        f'change_codes_deepjit_{project_name}_val.pkl',
+        f'change_codes_deepjit_{project_name}_test.pkl',
+        f'change_codes_simcom_{project_name}_train.pkl',
+        f'change_codes_simcom_{project_name}_val.pkl',
+        f'change_codes_simcom_{project_name}_test.pkl',
+        f'change_features_{project_name}_train.csv',
+        f'change_features_{project_name}_val.csv',
+        f'change_features_{project_name}_test.csv',
     ]
 
     return output
 
 def get_save_name_cross(index, language):
     output = [
-        f'{language}/commits/deepjit_{language}_part_4_train.pkl',
-        f'{language}/commits/deepjit_{language}_part_4_val.pkl',
-        f'{language}/commits/simcom_{language}_part_4_train.pkl',
-        f'{language}/commits/simcom_{language}_part_4_val.pkl',
-        f'{language}/commits/deepjit_{language}_part_1_part_4_train.pkl',
-        f'{language}/commits/deepjit_{language}_part_1_part_4_val.pkl',
-        f'{language}/commits/simcom_{language}_part_1_part_4_train.pkl',
-        f'{language}/commits/simcom_{language}_part_1_part_4_val.pkl',
-        f'{language}/features/{language}_part_4.csv',
-        f'{language}/features/{language}_part_4_train.csv',
-        f'{language}/features/{language}_part_4_val.csv',
-        f'{language}/features/{language}_part_1_part_4.csv',
-        f'{language}/features/{language}_part_1_part_4_train.csv',
-        f'{language}/features/{language}_part_1_part_4_val.csv'
+        f'{language}/commits/change_codes_deepjit_{language}_train.pkl',
+        f'{language}/commits/change_codes_deepjit_{language}_val.pkl',
+        f'{language}/commits/change_codes_deepjit_{language}_test.pkl',
+        f'{language}/commits/change_codes_simcom_{language}_train.pkl',
+        f'{language}/commits/change_codes_simcom_{language}_val.pkl',
+        f'{language}/commits/change_codes_simcom_{language}_test.pkl',
+        f'{language}/features/change_features_{language}_train.csv',
+        f'{language}/features/change_features_{language}_val.csv',
+        f'{language}/features/change_features_{language}_test.csv',
     ]
 
     return output[index]
