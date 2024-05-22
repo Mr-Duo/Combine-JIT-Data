@@ -124,30 +124,22 @@ def get_save_name_cross(index, language):
         f'{language}/commits/change_codes_simcom_{language}_test.pkl',
         f'{language}/features/change_features_{language}_train.csv',
         f'{language}/features/change_features_{language}_val.csv',
-        f'{language}/features/change_features_{language}_test.csv',
+        f'{language}/features/change_features_{language}_test.csv'
     ]
 
     return output[index]
 
 def get_save_name(index, language):
     output = [
-        f'{language}/commits/deepjit_{language}_part_4_train.pkl',
-        f'{language}/commits/deepjit_{language}_part_4_val.pkl',
-        f'{language}/commits/simcom_{language}_part_4_train.pkl',
-        f'{language}/commits/simcom_{language}_part_4_val.pkl',
-        f'{language}/commits/deepjit_{language}_part_1_part_4_train.pkl',
-        f'{language}/commits/deepjit_{language}_part_1_part_4_val.pkl',
-        f'{language}/commits/simcom_{language}_part_1_part_4_train.pkl',
-        f'{language}/commits/simcom_{language}_part_1_part_4_val.pkl',
-        f'{language}/commits/deepjit_{language}_part_5.pkl',
-        f'{language}/commits/simcom_{language}_part_5.pkl',
-        f'{language}/features/{language}_part_5.csv',
-        f'{language}/features/{language}_part_4.csv',
-        f'{language}/features/{language}_part_4_train.csv',
-        f'{language}/features/{language}_part_4_val.csv',
-        f'{language}/features/{language}_part_1_part_4.csv',
-        f'{language}/features/{language}_part_1_part_4_train.csv',
-        f'{language}/features/{language}_part_1_part_4_val.csv'
+        f'{language}/commits/change_codes_deepjit_{language}_train.pkl',
+        f'{language}/commits/change_codes_deepjit_{language}_val.pkl',
+        f'{language}/commits/change_codes_deepjit_{language}_test.pkl',
+        f'{language}/commits/change_codes_simcom_{language}_train.pkl',
+        f'{language}/commits/change_codes_simcom_{language}_val.pkl',
+        f'{language}/commits/change_codes_simcom_{language}_test.pkl',
+        f'{language}/features/change_features_{language}_train.csv',
+        f'{language}/features/change_features_{language}_val.csv',
+        f'{language}/features/change_features_{language}_test.csv'
     ]
 
     return output[index]
